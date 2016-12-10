@@ -456,41 +456,6 @@ stop是endsection的简写。
     @widget('Shared/Footer')
 ```
 
-##stack
-用于输出栈内容
-###编译
-```php
-    return "<?php echo \$renderer->getSection{$expression}; ?>";
-```
-###示例
-```php
-    @stack('scripts')
-```
-
-##push
-###编译
-```php
-    return "<?php \$renderer->startSection{$expression}; ?>";
-```
-###示例
-```php
-    @push('scripts')
-        <script></script>
-    @endpush
-```
-
-##endpush
-###编译
-```php
-    return '<?php $renderer->appendSection(); ?>';
-```
-###示例
-```php
-    @push('scripts')
-        <script></script>
-    @endpush
-```
-
 ##break
 ###编译
 ```php
