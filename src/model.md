@@ -1,9 +1,9 @@
 #模型定义
+ManaPHP为了方便数据表的维护实现了[Model](http://api.manaphp.com/develop/ManaPHP/Mvc/Model.html)类。
 ##定义模型类
 定义一个User模型类：
 
 ```php
-    <?php
     namespace Application\Home\Models;
     use ManaPHP\Mvc\Model;
     
@@ -183,6 +183,18 @@
 
     $user->create();
 ```
+##创建操作的相关接口
+
+```php
+    /*
+     * @param array $data
+     * @param array $whiteList
+     *
+     * @return void
+     * @throws \ManaPHP\Mvc\Model\Exception
+     */
+    public function create($data = null, $whiteList = null);
+```
 #更新
 ##通过实例方法更新记录
 第一种是通过字段赋值再更新:
@@ -225,7 +237,28 @@
 
 >警告! 请不要使用同一个实例做多次更新，会导致部分重复数据不再更新，正确的方式 
 应是先查询后再更新或使用静态方法更新。
+##更新操作的更新接口
 
+```php
+    /*
+     * @param array $data
+     * @param array $whiteList
+     *
+     * @return void
+     * @throws \ManaPHP\Mvc\Model\Exception
+     */
+    public function update($data = null, $whiteList = null);
+
+    /**
+     * @param array        $columnValues
+     * @param string|array $conditions
+     * @param array        $bind
+     *
+     * @return int
+     * @throws \ManaPHP\Mvc\Model\Exception
+     */
+    public static function updateAll($columnValues, $conditions, $bind = []);
+```
 #删除
 ##通过实例方法删除记录
 ```php
@@ -234,7 +267,7 @@
 ```
 ##通过静态方法删除记录
 ```php
-    User::deleteAll('enabled'=>0);
+    User::deleteAll(['enabled'=>0]);
 ```
 #查询
 ##查询单条记录
