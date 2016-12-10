@@ -108,10 +108,11 @@ Sword提供了方便的PHP流程控制方式，比如条件语句与循环，这
     @elseif (count($records) > 1)
         I have multiple records!
     @else
-        I don't have any records!
+        I do not have any records!
     @endif
 ```
-##循环
+
+## 循环
 通过@for、@endfor、@foreach、@endforeach、@while、@endwhile指令可以创建循环结构。这些指令都有相应的PHP表达式。
 ```php
     @for ($i = 0; $i < 10; $i++)
