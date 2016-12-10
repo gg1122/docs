@@ -269,6 +269,24 @@ ManaPHP为了方便数据表的维护实现了[Model](http://api.manaphp.com/dev
 ```php
     User::deleteAll(['enabled'=>0]);
 ```
+##删除操作的相关接口
+
+```php
+    /*
+     * @return void
+     * @throws \ManaPHP\Mvc\Model\Exception
+     */
+    public function delete();
+
+    /**
+     * @param string|array $conditions
+     * @param array        $bind
+     *
+     * @return int
+     * @throws \ManaPHP\Mvc\Model\Exception
+     */
+    public static function deleteAll($conditions, $bind = []);
+```
 #查询
 ##查询单条记录
 findFirst函数簇用于查询单条记录。如果记录不存在，返回FALSE。例如：
@@ -300,7 +318,35 @@ findAll函数簇用于查询多条记录。如果记录不存在，返回空数�
             ->where('user_id',$user_id)
             ->execute();
 ```
+##查询相关的接口
+```php
+    /*
+     * @param string|array $parameters
+     * @param int|array    $cacheOptions
+     *
+     * @return static|false
+     * @throws \ManaPHP\Mvc\Model\Exception
+     */
+    public static function findFirst($parameters = null, $cacheOptions = null);
 
+    /**
+     * alias of find
+     *
+     * @param    string|array $parameters
+     * @param   int|array     $cacheOptions
+     *
+     * @return  static[]
+     * @throws \ManaPHP\Mvc\Model\Exception
+     */
+    final public static function findAll($parameters = null, $cacheOptions = null)
+
+    /*
+     * @param \ManaPHP\DiInterface $dependencyInjector
+     *
+     * @return \ManaPHP\Mvc\Model\QueryBuilderInterface
+     */
+    public static function query($dependencyInjector = null);
+```
 # Working with Models
 A model represents the information (data) of the application and the rules to manipulate that data. Models are primarily used for managing
 the rules of interaction with a corresponding database table. In most cases, each table in your database will correspond to one model in
