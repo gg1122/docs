@@ -347,6 +347,23 @@ findAll函数簇用于查询多条记录。如果记录不存在，返回空数�
      */
     public static function query($dependencyInjector = null);
 ```
+#聚合
+可以通过模型调用聚合函数进行查询，支持的方法如下:
+
+|  方法 |   说明   |
+| ----- | -------- |
+| count | 统计数量 |
+| max   | 最大值   |
+| min   | 最小值   |
+| avg   | 平均值   |
+| sum   | 求和     |
+
+```php
+    echo User::count(['user_id'=>1]);
+    echo User::count(['user_name LIKE :user_name',['bind'=>'user_name' =>'mana%']]);
+
+```
+
 # Working with Models
 A model represents the information (data) of the application and the rules to manipulate that data. Models are primarily used for managing
 the rules of interaction with a corresponding database table. In most cases, each table in your database will correspond to one model in
